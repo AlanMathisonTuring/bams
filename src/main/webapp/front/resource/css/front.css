@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+.tablelist th{font-size:14px;font-family:"微软雅黑";padding:10px;}
+.tablelist td{font-size:14px;padding:5px;}
+
+#tempsave{display:block;width:120px;line-height:18px;}
+
+#tempsave .button {
+	width:119px;
+	height:39px;
+	background:url(../image/tempsave.png) no-repeat;
+	border:0px;
+	cursor: pointer;
+}
+
+.inputtable{
+	border-collapse:collapse;
+	width:100%;
+}
+
+.inputtable th{
+	line-height:35px;
+	height:35px;
+	text-align:right;
+	padding-right:10px;
+	white-space: nowrap;
+	width:12%;
+	background:#F3F3F3;
+	font-weight:normal;
+}
+.inputtable td{
+	padding:5px;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${news.title!}</title>
+[#include "common.html"/]
+</head>
+
+<body>
+	<div class="wrap">
+		[#include "header.html"/]
+		<div class="f-cb">
+		    <div style="float:left;overflow:hidden;width:670px;">
+				<div style="padding:10px;">
+					<h1 style="text-align:center;font-size:16px;padding:15px;">${news.title!}</h1>
+					<div style="text-align:right;color:#AAA;padding:10px;">
+						发布时间：${news.createdate!}
+					</div>
+					<div style="padding:10px;font-size:14px;text-indent:28px;line-height:28px;">
+						${news.content!}
+					</div>
+					[#if (attachs?size >0)]
+					<div style="line-height:22px;"> 
+						<p style="color:red;font-size:14px;">附件文档：</p>
+						[#list attachs as attach]
+						<p><a href="${base}/download.do?fileId=${attach.primaryKey}" title="点击下载">${attach.attachmentName!}</a></p>
+						[/#list]
+					</div>
+					[/#if]
+				</div>			
+		    </div>
+		
+		    <div style="float:right;overflow:hidden;width:300px;">
+		        
+		    </div>
+		</div>
+		[#include "footer.html"/]
+	</div>
+</body>
+</html>

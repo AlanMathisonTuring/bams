@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户登录 </title>
+[#include "common.html"/]
+<script type="text/javascript">
+function changecode(){
+	var obj = document.getElementById("codeimg");
+	if(obj != null)
+		obj.src = "${base}/validcode.do?t="+Math.random();
+}
+
+$(function() {
+	changecode();
+	
+	$("#jvForm").validate({
+		success: function(label) {
+			label.addClass("success");
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+	<div class="wrap">
+		[#include "header.html"/]
+		<div class="login">
+			<div class="f-cb">
+				<div class="left">
+					<div class="title">会员登录</div>
+					<form id="jvForm" action="${base}/login.jspx" method="post">
+						<table border="0" cellpadding="0" cellspacing="15">
+							<tr>
+								<td></td>
+								<td>
+									<div id="msgbox" style="color: red;">${msg!}</div>
+								</td>
+							</tr>
+							<tr>
+								<td align="right">用户名：</td>
+								<td><input type="text" id="username" name="username" class="input required" />
+								</td>
+							</tr>
+							<tr>
+								<td align="right">密码：</td>
+								<td>
+									<input type="password" id="password" name="password" class="input required" />
+								</td>
+							</tr>
+							<tr>
+								<td align="right">验证码：</td>
+								<td>
+									<table border="0" cellpadding="0" cellspacing="0">
+										<tr>
+											<td>
+												<input type="text" id="captcha" name="captcha" class="inputcaptcha required captcha"/>
+											</td>
+											<td>
+												<img src="${base}/images/codeload.gif" onclick="changecode()"  title="点击切换验证码" style="vertical-align:bottom;cursor: pointer;" alt="点击重新加载" id="codeimg">
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<input type="submit" value=" 登 录 " class="button" />
+									如果您还没有帐号，请点击这里<a href="${base}/register.jspx">注册</a>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+
+				<div class="right">
+					<div style="height:35px;line-height:35px;font-size:20px;font-weight:bold;color:black;">
+						<span style="float:right;font-weight:normal;font-size:12px;padding-right:10px;">
+						<a href="channel.jspx?type=2343" title="">更多»</a>
+						</span>
+						通知公告
+					</div>	
+					<ul style="padding:5px;">
+						[@news_list typeId='2343' count='5']
+							[#list tag_list as news]
+								<li style="height:22px;line-height:22px;">
+									<span style="float:right;color:#666;">
+										[@text_cut s=news.createdate len='5'/]
+									</span>
+									<a href="content.jspx?id=${news.primaryKey}" title="${news.title!}" target="_blank">
+										[@text_cut s=news.title len='15' append='...'/]
+									</a>
+								</li>
+							[/#list]
+						[/@news_list]
+					</ul>						
+						
+				</div>
+			</div>
+		</div>
+		[#include "footer.html"/]
+	</div>
+</body>
+</html>

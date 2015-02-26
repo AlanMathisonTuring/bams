@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>注册帐号成功</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+[#include "common.html"/]
+</head>
+<body>
+<div class="prompt">
+  <dl>
+    <dt></dt>
+    <dd class="msg">成功提示页面!</dd>
+    <dd>恭喜，注册帐号成功，马上跳转到登录页面。</dd>
+    <dd>
+	     <script>setTimeout("window.location.href ='${base}/login.jspx';", 2000);</script>
+		【<a href="${base}/login.jspx">如果您的浏览器没有自动跳转，请点击此链接</a>】
+    </dd>
+  </dl>
+</div>
+</body>
+</html>

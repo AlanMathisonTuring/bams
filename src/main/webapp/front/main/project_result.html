@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>保存项目成功</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+[#include "../common.html"/]
+</head>
+<body>
+<div class="wrap">
+[#include "../header.html"/]
+<div class="prompt">
+  <dl>
+    <dt></dt>
+    <dd class="msg">成功提示页面!</dd>
+    <dd>恭喜，保存项目信息成功!。</dd>
+    <dd>
+		【<a href="${base}/main/project_edit.jspx?id=${project.primaryKey!}">继续填写</a>】
+		【<a href="${base}/main/project_list.jspx">返回列表</a>】
+    </dd>
+  </dl>
+</div>
+[#include "../footer.html"/]
+</div>
+</body>
+</html>

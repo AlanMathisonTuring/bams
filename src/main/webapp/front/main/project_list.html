@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>项目列表</title>
+[#include "../common.html"/]
+</head>
+
+<body>
+	<div class="wrap">
+		[#include "../header.html"/]
+		<div class="f-cb">
+		    <div style="float:left;overflow:hidden;width:670px;">
+		    
+		    	<div style="height:35px;line-height:35px;font-size:20px;font-weight:bold;color:black;margin-top:20px;">
+					项目列表&nbsp;&nbsp;
+					<a href="${base}/main/project_add.jspx">新增项目</a>
+				</div>
+		    	<form id="tableForm" method="post">
+		    	
+				<table class="tablelist" width="100%" cellpadding="0" cellspacing="0" border="1">
+					<tr>
+						<th align="left">
+							项目名称
+						</th>
+						<th>
+							项目类型
+						</th>
+						<th>
+							操作
+						</th>
+					</tr>
+					[#list pager.resultList as project]
+					<tr>
+						<td>
+						 	<a href="project_edit.jspx?id=${project.primaryKey}" target="_blank">
+							${project.projectName!}
+							</a>
+						</td>
+						<td align="center">
+							${project.projectType.libraryInfoName!}
+						</td>
+						<td align="center">
+							<a href="project_edit.jspx?id=${project.primaryKey}">编辑</a>
+							<a href="javascript:if(confirm('您确定删除该项目吗？')) {location.href='project_delete.jspx?id=${project.primaryKey}'}">删除</a>
+						</td>
+					</tr>
+				  	[/#list]
+				</table>
+				
+				<div class="f-mt10 f-tac">
+				 
+			    <input type="hidden" name="pageNo" />
+				共 ${pager.totalRows!} 条&nbsp;
+				<input type="button" class="button" value="首 页" onclick="_gotoPage('1');"/> 
+				<input type="button" class="button" value="上一页" onclick="_gotoPage('${pageNo-1}');" [#if (pageNo == 1)]disabled="disabled"[/#if]/> 
+				<input type="button" class="button" value="下一页" onclick="_gotoPage('${pageNo+1}');" [#if (pageNo == pager.totalPages)]disabled="disabled"[/#if] /> 
+				<input type="button" class="button" value="尾 页" onclick="_gotoPage('${pager.totalPages!}');"/>&nbsp; 
+				当前 ${pageNo!}/${pager.totalPages!}页 
+					
+				<script type="text/javascript">
+				function _gotoPage(pageNo) {
+					var tableForm = document.getElementById("tableForm");
+					$("input[name=pageNo]").val(pageNo);
+					tableForm.action="project_list.jspx";
+					tableForm.submit();
+				}
+				</script>
+				</div>
+				</form>
+		    </div>
+		
+		    <div style="float:right;overflow:hidden;width:300px;">
+		        
+		    </div>
+		</div>
+		[#include "../footer.html"/]
+	</div>
+</body>
+</html>

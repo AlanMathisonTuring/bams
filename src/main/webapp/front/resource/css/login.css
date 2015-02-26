@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+.login {
+	margin-top: 30px;
+	font-size: 14px;
+}
+.login a{
+	color:#4F7AB4;
+}
+
+.login .left{
+	float:left;overflow:hidden;width:600px;border-right:1px solid #E5E5E5;
+}
+
+.login .right{
+	float:right;overflow:hidden; width:350px;
+}
+
+.login .title {
+	font-size: 20px;
+	font-family: 微软雅黑;
+}
+
+.login .input {
+	width: 240px;
+	height: 20px;
+	line-height: 20px;
+	padding: 5px;
+	border: 1px solid #E5E5E5;
+	font-size:14px;
+}
+
+.login .inputcaptcha {
+	width: 100px;
+	height: 20px;
+	line-height: 20px;
+	padding: 5px;
+	border: 1px solid #E5E5E5;
+	font-size: 14px;
+}
+
+.login .button {
+	padding:5px;
+	font-size: 14px;
+}
+.login .result {
+	width:600px;margin:0 auto;line-height:40px;
+}
+.login .resultfont {
+	font-weight:bold;font-size:20px;font-family:微软雅黑;
+}

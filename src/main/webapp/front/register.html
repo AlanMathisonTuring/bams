@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>注册新帐号</title>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+[#include "common.html"/]
+<script type="text/javascript">
+function changecode(){
+	var obj = document.getElementById("codeimg");
+	if(obj != null)
+		obj.src = "${base}/validcode.do?t="+Math.random();
+}
+
+$(function() {
+	changecode();
+	
+	$("#jvForm").validate({
+		rules:{
+			username:{
+				required:true,
+				username:true,
+				remote:"${base}/username_unique.jspx"
+			}
+		},
+		messages:{
+			username:{
+	        	remote:"用户名已存在！"
+	        }
+		},
+		success: function(label) {
+			label.addClass("success");
+		}
+	});
+});
+</script>
+</head>
+<body>
+	<div class="wrap">
+		[#include "header.html"/]
+		<div class="login">
+			<div class="f-cb">
+				<div class="left">
+					<div class="title">会员注册</div>
+					<form id="jvForm" action="register.jspx" method="post">
+						<table cellspacing="15" cellpadding="0" border="0">
+							<tr>
+								<td></td>
+								<td>
+									<div id="msgbox" style="color: red;">${msg!}</div>
+								</td>
+							</tr>
+						
+							<tr>
+								<td align="right">用户名：</td>
+								<td><input class="input" id="username" name="username" type="text" maxlength="15" />
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td height="30" class="tip">用户名由6到15位的英文字母、数字组成。</td>
+							</tr>
+							<tr>
+								<td align="right">密码：</td>
+								<td><input class="input required password" id="password" type="password" name="password" maxlength="15" />
+								</td>
+							</tr>
+							<tr>
+								<td align="right">确认密码：</td>
+								<td><input class="input required" type="password" equalto="#password" maxlength="15" />
+								</td>
+							</tr>
+							<tr>
+								<td align="right">验证码：</td>
+								<td>
+									<table>
+										<tr>
+											<td>
+												<input class="inputcaptcha required captcha" maxlength="20" name="captcha" type="text" maxlength="4" />
+											</td>
+											<td>
+												<img src="${base}/images/codeload.gif" onclick="changecode()"  title="点击切换验证码" style="vertical-align:bottom;cursor: pointer;" alt="点击重新加载" id="codeimg">
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						
+							<tr>
+								<td></td>
+								<td><input class="button" type="submit" name="register" value=" 注册 " />
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+
+				<div class="right">
+					<div style="line-height:25px;">
+						<p>如果您已有帐号，请点击这里登录！</p>
+						<a href="${base}/login.jspx">登录</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		[#include "footer.html"/]
+	</div>
+</body>
+</html>

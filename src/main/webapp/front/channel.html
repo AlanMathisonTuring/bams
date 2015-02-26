@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>${lib.libraryInfoName!}</title>
+[#include "common.html"/]
+</head>
+
+<body>
+	<div class="wrap">
+		[#include "header.html"/]
+		<div class="f-cb">
+		    <div style="float:left;overflow:hidden;width:670px;">
+		    
+		    	<div style="height:35px;line-height:35px;font-size:20px;font-weight:bold;color:black;margin-top:20px;">
+					${lib.libraryInfoName!}
+				</div>
+		    	<form id="tableForm" method="post">
+				<ul style="font-size:14px;">
+					[#list pager.resultList as news]
+						<li style="height:28px;line-height:28px;">
+							<span style="float:right;color:#666;">
+								${news.createdate!}
+							</span>
+							<a href="content.jspx?id=${news.primaryKey}" title="${news.title!}" target="_blank">
+								${news.title!}
+							</a>
+						</li>
+					[/#list]
+				</ul>
+				
+				<div class="f-mt10 f-tac">
+				 
+				<input type="hidden" name="type" value="${type!}"/> 
+			    <input type="hidden" name="pageNo" />
+	
+				共 ${pager.totalRows!} 条&nbsp;
+				<input type="button" class="button" value="首 页" onclick="_gotoPage('1');"/> 
+				<input type="button" class="button" value="上一页" onclick="_gotoPage('${pageNo-1}');" [#if (pageNo == 1)]disabled="disabled"[/#if]/> 
+				<input type="button" class="button" value="下一页" onclick="_gotoPage('${pageNo+1}');" [#if (pageNo == pager.totalPages)]disabled="disabled"[/#if] /> 
+				<input type="button" class="button" value="尾 页" onclick="_gotoPage('${pager.totalPages!}');"/>&nbsp; 
+				当前 ${pageNo!}/${pager.totalPages!}页 
+					
+				<script type="text/javascript">
+				function _gotoPage(pageNo) {
+					var tableForm = document.getElementById("tableForm");
+					$("input[name=pageNo]").val(pageNo);
+					tableForm.action="channel.jspx";
+					tableForm.submit();
+				}
+				</script>
+				</div>
+				</form>
+				 
+		    </div>
+		
+		    <div style="float:right;overflow:hidden;width:300px;">
+		        
+		    </div>
+		</div>
+		[#include "footer.html"/]
+	</div>
+</body>
+</html>

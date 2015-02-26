@@ -1,0 +1,20 @@
+<img src="${base}/front/resource/image/header.gif" width="980"></img>
+<style>
+.menu-list {background:#EEEEEE;font-family:"微软雅黑";height:35px;line-height:35px;font-size:14px;}
+</style>
+
+<div class="wrap menu-list">
+	<span style="float:right;">
+	[#if member??]
+		欢迎您：${member.username!}
+		<a href="${base}/main/index.jspx">用户中心</a>
+		<a href="${base}/main/password.jspx">修改密码</a>
+		<a href="${base}/main/logout.jspx">退出</a>
+	[/#if]
+	</span>
+
+	<a href="${base}/login.jspx">首页</a>&nbsp;
+	<a href="${base}/channel.jspx?type=2343">通知公告</a>&nbsp;
+	<a href="${base}/channel.jspx?type=2345">申报指南</a>&nbsp;
+	<a href="${base}/channel.jspx?type=2347">在线帮助</a>&nbsp;
+</div>
